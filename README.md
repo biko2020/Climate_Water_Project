@@ -53,7 +53,7 @@ Tools Required:
     Tableau Public (free) – visualizations
 
 Project Structure:
-
+```
 Climate_Water_Project/
 ├── data/
 │   ├── raw/
@@ -62,7 +62,7 @@ Climate_Water_Project/
 ├── analysis/
 ├── visualizations/
 └── documentation/
-
+```
 📦 Phase 2: Data Collection
 📊 Dataset 1: SPEI Drought Index
 
