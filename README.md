@@ -195,7 +195,7 @@ Day	Task
 5-6	Get precipitation + temperature from World Bank (or NOAA as backup)
 7	Integrate datasets, check for missing data, begin visualizations
 📂 Expected Directory Organization
-
+```
 Climate_Water_Project/
 ├── data/
 │   ├── raw/            # Original downloaded files
@@ -205,7 +205,7 @@ Climate_Water_Project/
 ├── documentation/
 │   └── data_sources_and_methods.md
 └── visualizations/     # Tableau or matplotlib outputs
-
+```
 ✅ Week 1 Completion Goals
 
 SPEI data (4 regions, 2000–2024)
