@@ -19,6 +19,9 @@
 11. [Troubleshooting Tips](#troubleshooting-tips)
 12. [Conclusion](#conclusion)
 
+
+
+
 ## Introduction
 
 🌍 Focus Region: Morocco's Water Crisis
@@ -37,164 +40,88 @@ Morocco is facing a historic water crisis:
 
     Forecast: 53% decline in precipitation this century
 
-🎯 Target Regions for Analysis
-Region	Key Characteristics	Coordinates
-Souss-Massa	Argan agriculture, groundwater depletion hotspot	~30.4°N, 9.5°W
-Marrakech-Safi	Atlas watershed, agri-tourism pressure	~31.6°N, 8.0°W
-Casablanca-Settat	High urban water stress, economic hub	~33.6°N, 7.6°W
-Oriental	Semi-arid, transboundary water issues	~34.7°N, 2.9°W
+🎯 Target Regions for Analysis:
+### Region	Key Characteristics	Coordinates
+    - Souss-Massa	Argan agriculture, groundwater depletion hotspot	~30.4°N, 9.5°W
+    - Marrakech-Safi	Atlas watershed, agri-tourism pressure	~31.6°N, 8.0°W
+    - Casablanca-Settat	High urban water stress, economic hub	~33.6°N, 7.6°W
+    - Oriental	Semi-arid, transboundary water issues	~34.7°N, 2.9°W
+
 🧰 Phase 1: Work Environment Setup
 Tools Required:
 
-    Excel / Google Sheets – data cleaning
+    Excel / Google Sheets – data cleaning 
 
-    Python (optional) – advanced processing
+    Python – advanced processing
 
     Tableau Public (free) – visualizations
+
+##  Install Required Python Packages
+    - pip install pandas numpy matplotlib seaborn plotly requests beautifulsoup4
+    - pip install xarray netcdf4 rasterio geopandas folium
+    - pip install scipy scikit-learn
+
+# Step 1: Set up your project structure
+python setup_project.py
+
 
 Project Structure:
 ```
 Climate_Water_Project/
 ├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── final/
+│   ├── raw/            # Original downloaded files
+│   │   ├── spei_beni_mellal-khenifra.csv
+│   │   ├── spei_casablanca-settat.csv
+│   │   ├── spei_dakhla-oued_ed-dahab.csv
+│   │   ├── spei_draa-tafilalet.csv
+│   │   ├── spei_fès-meknès.csv
+│   │   ├── spei_guelmim-oued_noun.csv
+│   │   ├── spei_laayoune-sakia_el_hamra.csv
+│   │   ├── spei_marrakech-safi.csv
+│   │   ├── spei_oriental.csv
+│   │   ├── spei_rabat-sale-kenitra.csv
+│   │   ├── spei_souss-massa.csv
+│   │   └── spei_tanger-tetouan-al_hoceïma.csv
+│   │   └── spei01.nc
+│   ├── processed/      # Cleaned datasets
+│   ├── final/
+│   └── analysis/       # Charts, graphs, statistical outputs
 ├── analysis/
-├── visualizations/
-└── documentation/
+│   └── extract_spei_from_netcdf.py
+├── config/
+│   ├── __init__.py
+│   └── regions.py
+├── documentation/
+│   └── manual_download_guide.md
+├── results/            # Project Results
+├── visualizations/     # Tableau or matplotlib outputs
+├── .gitignore          # List of files ignored by git
+├── process_data.py     # Script to process the data
+├── README.md           # This file
+├── requirements.txt    # List of required Python packages
+└── setup_project.py    # Script to set up the project structure
 ```
-📦 Phase 2: Data Collection
-📊 Dataset 1: SPEI Drought Index
 
-Source: Global SPEI Database
-Period: 2000–2024
-Resolution: 0.5° (~55 km)
-Metric: SPEI-12 (12-month drought index)
-Download Instructions:
+# Step 2: Download the NetCDF file and extract SPEI data
+python analysis/extract_spei_from_netcdf.py
 
-    Go to: https://spei.csic.es/map/maps.html
+## Data Sources
 
-    Select: SPEI data → Download data
+*   SPEI data: [Link to original data source] - SPEI data for different regions of Morocco, downloaded from a third-party source. The data is available in CSV format in the `data/raw` directory. The NetCDF file `spei01.nc` also contains SPEI data.
+*   Groundwater level data: [Link to original data source] - Groundwater level data for Morocco, downloaded from a third-party source. (Note: The exact source of this data is not specified in the project files.)
+*   Precipitation data: [Link to original data source] - Precipitation data for Morocco, downloaded from a third-party source. (Note: The exact source of this data is not specified in the project files.)
+*   Temperature data: [Link to original data source] - Temperature data for Morocco, downloaded from a third-party source. (Note: The exact source of this data is not specified in the project files.)
 
-    Use coordinates for each region (see table above)
+## Analysis Methods
 
-    Time Scale: SPEI-12
+The project uses the following data analysis methods:
 
-    Format: CSV
+*   Data cleaning: Excel/Google Sheets, Python
+*   Data processing: Python (pandas, numpy, xarray)
+*   Data visualization: Tableau Public, matplotlib
 
-Data Example:
+## Project Structure
 
-Date,SPEI-12
-2000-01-01,-0.45
-2000-02-01,-0.67
-
-Interpretation:
-
-    SPEI ≥ 0: Normal to wet
-
-    -1.0 to 0: Mild drought
-
-    -2.0 to -1.5: Severe drought
-
-    < -2.0: Extreme drought
-
-🌊 Dataset 2: GRACE Groundwater Data
-
-Source: NASA GRACE/GRACE-FO
-Period: 2002–2024
-Resolution: 1° grid (~111 km)
-Download Instructions:
-
-    Visit: https://nasagrace.unl.edu/
-
-    Go to Data Access → Groundwater Drought Indicator
-
-    Region: Morocco (28°N–36°N, 17°W–1°E)
-
-    Download monthly groundwater storage anomaly & percentile CSVs
-
-Data Example:
-
-Date,Latitude,Longitude,GW_Percentile,GW_Anomaly_cm
-2002-01,30.5,-9.0,25,1.2
-
-Interpretation:
-
-    76–100%: Much above normal
-
-    0–10%: Much below normal (drought)
-
-🌧️ Dataset 3: Precipitation
-
-Option A: World Bank Climate Portal
-Option B: NOAA CPC Global Precipitation
-Variables:
-
-    Monthly & Annual Precipitation (mm)
-
-    Precipitation Anomalies
-
-Data Format (CSV):
-
-Date,Precip_mm
-2000-01,12.4
-
-🌡️ Dataset 4: Temperature (World Bank)
-
-    Monthly Mean, Min, Max Temperatures
-
-    Temperature Anomalies
-
-🧹 Phase 3: Data Cleaning Checklist
-
-Remove duplicates
-
-Standardize date format (YYYY-MM-DD)
-
-Handle missing values
-
-Validate coordinates
-
-    Consistent naming for all regions
-
-📈 Key Metrics to Calculate
-Drought Metrics:
-
-    Frequency: Months/year with SPEI < -1.0
-
-    Intensity: Avg. SPEI during droughts
-
-    Duration: Consecutive drought months
-
-    Extreme Events: Count of SPEI < -2.0
-
-Precipitation Metrics:
-
-    Annual trend (mm/year)
-
-    Seasonal contrast (Oct–Apr vs May–Sep)
-
-    Inter-annual volatility
-
-    Detection of very dry/wet years
-
-Groundwater Metrics:
-
-    Annual depletion rate (cm/year)
-
-    Lag between rainfall & GW change
-
-    Recovery patterns after wet periods
-
-    Regional depletion comparisons
-
-📅 Week 1: Data Collection Workflow
-Day	Task
-1-2	Download SPEI for all 4 regions (2000–2024), validate, document
-3-4	Download GRACE GW data, focus on Souss-Massa + Marrakech-Safi
-5-6	Get precipitation + temperature from World Bank (or NOAA as backup)
-7	Integrate datasets, check for missing data, begin visualizations
-📂 Expected Directory Organization
 ```
 Climate_Water_Project/
 ├── data/
@@ -204,41 +131,39 @@ Climate_Water_Project/
 │   └── analysis/       # Charts, graphs, statistical outputs
 ├── documentation/
 │   └── data_sources_and_methods.md
+├── results/            # Project Results
 └── visualizations/     # Tableau or matplotlib outputs
+├── process_data.py     # Script to process the data
+├── README.md           # This file
+├── requirements.txt    # List of required Python packages
+└── setup_project.py    # Script to set up the project structure
 ```
-✅ Week 1 Completion Goals
 
-SPEI data (4 regions, 2000–2024)
+## How to Run the Project
 
-GRACE data (2002–2024)
+1.  Set up the project structure: `python setup_project.py`
+2.  Download the data from the data sources listed above and place it in the `data/raw` directory.
+3.  Extract SPEI data from NetCDF file: `python analysis/extract_spei_from_netcdf.py`
+4.  Process the data: `python process_data.py`
+5.  Analyze the data and create visualizations using Tableau Public or matplotlib.
 
-Precipitation + Temperature (2000–2024)
+## Results
 
-Master integrated dataset
+The project is expected to produce the following results:
 
-Trend charts (initial)
-
-    Document sources + methodology
-
-🔍 Week 2 Preview
-
-    Correlation analysis: drought ↔ rainfall ↔ groundwater
-
-    Rank regions by vulnerability
-
-    Identify critical drought years (e.g., 2022, 2024)
-
-    Build the narrative: how Morocco’s crisis is evolving
-
-🛠️ Troubleshooting Tips
-Issue	Solution
-Slow SPEI site	Download 1 region at a time
-GRACE too complex	Use percentile maps first
-World Bank data missing	Use NOAA as backup
-Excel crashes	Use Python or break files by region
-Mixed date formats	Standardize to YYYY-MM-DD
-Inconsistent coordinates	Convert all to decimal degrees
+*   Visualizations of drought indices, groundwater levels, precipitation, and temperature in Morocco.
+*   Identification of the most vulnerable regions to drought and water scarcity.
+*   Analysis of the impact of drought on groundwater resources.
+*   A comprehensive report on the water crisis in Morocco.
 
 ## Conclusion
 
 This project aims to provide a comprehensive analysis of the water crisis in Morocco by integrating various datasets and applying data analysis techniques. The findings will be used to inform decision-making and develop strategies to mitigate the impact of drought and water scarcity in the region.
+
+## Create Virtual Environment and Install Packages
+
+To set up the project environment, follow these steps:
+
+1.  Create a virtual environment: `python -m venv .venv`
+2.  Activate the virtual environment: `source .venv/bin/activate`
+3.  Install the packages from requirements.txt: `pip install -r requirements.txt`
