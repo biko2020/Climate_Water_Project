@@ -38,6 +38,7 @@ Tools Required:
 
     Tableau Public (free) – visualizations
 
+<<<<<<< HEAD
 ##  Install Required Python Packages
     - pip install pandas numpy matplotlib seaborn plotly requests beautifulsoup4
     - pip install xarray netcdf4 rasterio geopandas folium
@@ -47,6 +48,8 @@ Tools Required:
 python setup_project.py
 
 
+=======
+>>>>>>> 03280bf2ae3160a2c376ecbe0011fb1680d7d368
 Project Structure:
 ```
 Climate_Water_Project/
@@ -69,6 +72,7 @@ Climate_Water_Project/
 │   ├── final/
 │   └── analysis/       # Charts, graphs, statistical outputs
 ├── analysis/
+<<<<<<< HEAD
 │   └── extract_spei_from_netcdf.py
 ├── config/
 │   ├── __init__.py
@@ -83,6 +87,123 @@ Climate_Water_Project/
 ├── requirements.txt    # List of required Python packages
 └── setup_project.py    # Script to set up the project structure
 ```
+=======
+├── visualizations/
+└── documentation/
+```
+📦 Phase 2: Data Collection
+📊 Dataset 1: SPEI Drought Index
+
+Source: Global SPEI Database
+Period: 2000–2024
+Resolution: 0.5° (~55 km)
+Metric: SPEI-12 (12-month drought index)
+Download Instructions:
+
+    Go to: https://spei.csic.es/map/maps.html
+
+    Select: SPEI data → Download data
+
+    Use coordinates for each region (see table above)
+
+    Time Scale: SPEI-12
+
+    Format: CSV
+
+Data Example:
+
+Date,SPEI-12
+2000-01-01,-0.45
+2000-02-01,-0.67
+
+Interpretation:
+
+    SPEI ≥ 0: Normal to wet
+
+    -1.0 to 0: Mild drought
+
+    -2.0 to -1.5: Severe drought
+
+    < -2.0: Extreme drought
+
+🌊 Dataset 2: GRACE Groundwater Data
+
+Source: NASA GRACE/GRACE-FO
+Period: 2002–2024
+Resolution: 1° grid (~111 km)
+Download Instructions:
+
+    Visit: https://nasagrace.unl.edu/
+
+    Go to Data Access → Groundwater Drought Indicator
+
+    Region: Morocco (28°N–36°N, 17°W–1°E)
+
+    Download monthly groundwater storage anomaly & percentile CSVs
+
+Data Example:
+
+Date,Latitude,Longitude,GW_Percentile,GW_Anomaly_cm
+2002-01,30.5,-9.0,25,1.2
+
+Interpretation:
+
+    76–100%: Much above normal
+
+    0–10%: Much below normal (drought)
+
+🌧️ Dataset 3: Precipitation
+
+Option A: World Bank Climate Portal
+Option B: NOAA CPC Global Precipitation
+Variables:
+
+    Monthly & Annual Precipitation (mm)
+
+    Precipitation Anomalies
+
+Data Format (CSV):
+
+Date,Precip_mm
+2000-01,12.4
+
+🌡️ Dataset 4: Temperature (World Bank)
+
+    Monthly Mean, Min, Max Temperatures
+
+    Temperature Anomalies
+
+🧹 Phase 3: Data Cleaning Checklist
+
+Remove duplicates
+
+Standardize date format (YYYY-MM-DD)
+
+Handle missing values
+
+Validate coordinates
+
+    Consistent naming for all regions
+
+📈 Key Metrics to Calculate
+Drought Metrics:
+
+    Frequency: Months/year with SPEI < -1.0
+
+    Intensity: Avg. SPEI during droughts
+
+    Duration: Consecutive drought months
+
+    Extreme Events: Count of SPEI < -2.0
+
+Precipitation Metrics:
+
+    Annual trend (mm/year)
+
+    Seasonal contrast (Oct–Apr vs May–Sep)
+
+    Inter-annual volatility
+>>>>>>> 03280bf2ae3160a2c376ecbe0011fb1680d7d368
 
 # Step 2: Download the NetCDF file and extract SPEI data
 python analysis/extract_spei_from_netcdf.py
@@ -102,8 +223,18 @@ The project uses the following data analysis methods:
 *   Data processing: Python (pandas, numpy, xarray)
 *   Data visualization: Tableau Public, matplotlib
 
+<<<<<<< HEAD
 ## Project Structure
 
+=======
+📅 Week 1: Data Collection Workflow
+Day	Task
+1-2	Download SPEI for all 4 regions (2000–2024), validate, document
+3-4	Download GRACE GW data, focus on Souss-Massa + Marrakech-Safi
+5-6	Get precipitation + temperature from World Bank (or NOAA as backup)
+7	Integrate datasets, check for missing data, begin visualizations
+📂 Expected Directory Organization
+>>>>>>> 03280bf2ae3160a2c376ecbe0011fb1680d7d368
 ```
 Climate_Water_Project/
 ├── data/
@@ -115,6 +246,7 @@ Climate_Water_Project/
 │   └── data_sources_and_methods.md
 ├── results/            # Project Results
 └── visualizations/     # Tableau or matplotlib outputs
+<<<<<<< HEAD
 ├── process_data.py     # Script to process the data
 ├── README.md           # This file
 ├── requirements.txt    # List of required Python packages
@@ -122,6 +254,12 @@ Climate_Water_Project/
 ```
 
 ## How to Run the Project
+=======
+```
+✅ Week 1 Completion Goals
+
+SPEI data (4 regions, 2000–2024)
+>>>>>>> 03280bf2ae3160a2c376ecbe0011fb1680d7d368
 
 1.  Set up the project structure: `python setup_project.py`
 2.  Download the data from the data sources listed above and place it in the `data/raw` directory.
