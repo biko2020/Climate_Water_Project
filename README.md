@@ -78,18 +78,18 @@ Project Structure:
 Climate_Water_Project/
 ├── data/
 │   ├── raw/            # Original downloaded files
-│   │   ├── spei_beni_mellal-khenifra.csv
-│   │   ├── spei_casablanca-settat.csv
-│   │   ├── spei_dakhla-oued_ed-dahab.csv
-│   │   ├── spei_draa-tafilalet.csv
-│   │   ├── spei_fès-meknès.csv
-│   │   ├── spei_guelmim-oued_noun.csv
-│   │   ├── spei_laayoune-sakia_el_hamra.csv
-│   │   ├── spei_marrakech-safi.csv
-│   │   ├── spei_oriental.csv
-│   │   ├── spei_rabat-sale-kenitra.csv
-│   │   ├── spei_souss-massa.csv
-│   │   └── spei_tanger-tetouan-al_hoceïma.csv
+│   │   ├── spei_beni_mellal-khenifra_2000_2024.csv
+│   │   ├── spei_casablanca-settat_2000_2024.csv
+│   │   ├── spei_dakhla-oued_ed-dahab_2000_2024.csv
+│   │   ├── spei_draa-tafilalet_2000_2024.csv
+│   │   ├── spei_fès-meknès_2000_2024.csv
+│   │   ├── spei_guelmim-oued_noun_2000_2024.csv
+│   │   ├── spei_laayoune-sakia_el_hamra_2000_2024.csv
+│   │   ├── spei_marrakech-safi_2000_2024.csv
+│   │   ├── spei_oriental_2000_2024.csv
+│   │   ├── spei_rabat-sale-kenitra_2000_2024.csv
+│   │   ├── spei_souss-massa_2000_2024.csv
+│   │   └── spei_tanger-tetouan-al_hoceïma_2000_2024.csv
 │   │   └── spei01.nc
 │   ├── processed/      # Cleaned datasets
 │   ├── final/           # Integrated datasets
