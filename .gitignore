@@ -46,3 +46,4 @@ build/**/
 Thumbs.db
 data/raw/*.nc
 data/raw/spei01.nc
+data/raw/spei01.nc
