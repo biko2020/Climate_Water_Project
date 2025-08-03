@@ -84,9 +84,9 @@ Climate_Water_Project/
 │   └── regions.py
 ├── data/
 │   ├── final/
-│   ├── processed/
-│   │   └── combined_spei_data.csv
-│   │   └── process_data.py
+│   ├── processed/ # Contains processed data
+│   │   └── combined_spei_data.csv # Combined SPEI data
+│   │   └── process_data.py # Script to process the data
 │   ├── raw/ # Original downloaded files
 │   │   ├── spei_beni_mellal-khenifra_2000_2024.csv
 │   │   ├── spei_casablanca-settat_2000_2024.csv
@@ -103,7 +103,6 @@ Climate_Water_Project/
 │   └── spei01.nc
 ├── documentation/
 │   └── manual_download_guide.md
-├── process_data.py # Script to process the data
 ├── README.md # This file
 ├── requirements.txt # List of required Python packages
 ├── results/ # Project Results
