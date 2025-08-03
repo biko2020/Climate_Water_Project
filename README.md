@@ -76,8 +76,18 @@ Project Structure:
 
 ```
 Climate_Water_Project/
+├── analysis/
+│   └── analyze_spei_data.py
+│   └── extract_spei_from_netcdf.py
+├── config/
+│   ├── __init__.py
+│   └── regions.py
 ├── data/
-│   ├── raw/            # Original downloaded files
+│   ├── final/
+│   ├── processed/
+│   │   └── combined_spei_data.csv
+│   │   └── process_data.py
+│   ├── raw/ # Original downloaded files
 │   │   ├── spei_beni_mellal-khenifra_2000_2024.csv
 │   │   ├── spei_casablanca-settat_2000_2024.csv
 │   │   ├── spei_dakhla-oued_ed-dahab_2000_2024.csv
@@ -90,24 +100,16 @@ Climate_Water_Project/
 │   │   ├── spei_rabat-sale-kenitra_2000_2024.csv
 │   │   ├── spei_souss-massa_2000_2024.csv
 │   │   └── spei_tanger-tetouan-al_hoceïma_2000_2024.csv
-│   │   └── spei01.nc
-│   ├── processed/      # Cleaned datasets
-│   ├── final/           # Integrated datasets
-│   └── analysis/        # Charts, graphs, statistical outputs
-├── analysis/
-│   └── extract_spei_from_netcdf.py
-├── config/
-│   ├── __init__.py
-│   └── regions.py
+│   └── spei01.nc
 ├── documentation/
 │   └── manual_download_guide.md
-├── results/            # Project Results
-├── visualizations/     # Tableau or matplotlib outputs
-├── .gitignore          # List of files ignored by git
-├── process_data.py     # Script to process the data
-├── README.md           # This file
-├── requirements.txt    # List of required Python packages
-└── setup_project.py    # Script to set up the project structure
+├── process_data.py # Script to process the data
+├── README.md # This file
+├── requirements.txt # List of required Python packages
+├── results/ # Project Results
+├── setup_project.py # Script to set up the project structure
+└── visualizations/
+    └── spei_trends_by_region.png # Tableau or matplotlib outputs
 ```
 
 # Step 2: Download the NetCDF file and extract SPEI data
